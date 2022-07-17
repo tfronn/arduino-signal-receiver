@@ -37,7 +37,6 @@ routes.post('/activate-signal', async (req: Request, res: Response) => {
   await submitSignalUseCase.execute({
     isActive: true,
     timestamp: new Date(),
-
   })
 
     const signal = await prisma.signal.findFirst({
@@ -45,6 +44,7 @@ routes.post('/activate-signal', async (req: Request, res: Response) => {
         isActive: true
       }
     });
+    console.log("Parabéns! O sinal foi ativado com sucesso.")
     return res.status(201).json(signal).send();
   } catch(err) {
     console.error(err)
@@ -67,6 +67,7 @@ routes.post('/deactivate-signal', async (req: Request, res: Response) => {
         isActive: false
       }
     });
+    console.log("Parabéns! O sinal foi desativado com sucesso.")
     return res.status(201).json(signal).send();
   } catch(err) {
     console.error(err)
